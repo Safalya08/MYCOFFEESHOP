@@ -1,0 +1,11 @@
+<com.google.android.material.appbar.MaterialToolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/topAppBar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="#2B1B17"
+    app:title="☕ Coffee Shop"
+    app:titleTextColor="#FFF8E7"
+    app:menu="@menu/top_app_bar_menu"
+    android:elevation="4dp"/>
