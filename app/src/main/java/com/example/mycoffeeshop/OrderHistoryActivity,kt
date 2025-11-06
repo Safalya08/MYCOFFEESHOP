@@ -1,0 +1,38 @@
+package com.example.mycoffeeshop
+
+import android.os.Bundle
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+
+class OrderHistoryActivity : AppCompatActivity() {
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var txtNoOrders: TextView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_order_history)
+
+        recyclerView = findViewById(R.id.recyclerOrderHistory)
+        txtNoOrders = findViewById(R.id.txtNoOrders)
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
+
+
+        val orders = OrderManager(this).getOrders()
+
+        if (orders.isEmpty()) {
+            txtNoOrders.text = "No orders yet ☕"
+            txtNoOrders.visibility = TextView.VISIBLE
+            recyclerView.visibility = RecyclerView.GONE
+        } else {
+            txtNoOrders.visibility = TextView.GONE
+            recyclerView.visibility = RecyclerView.VISIBLE
+
+            recyclerView.adapter = OrderHistoryAdapter(orders)
+        }
+    }
+}
